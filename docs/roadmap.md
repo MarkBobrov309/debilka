@@ -4,10 +4,13 @@
 - 2026-09-28: изучен исходный каталог — пустой, без Git и кода.
 - Foundation-код: Controller liveness, React skeleton, Compose/PostgreSQL,
   начальная миграция, CI, Makefile и архитектурные документы.
+- Локальные build/test, Docker smoke, повтор миграции, browser smoke и проверка
+  чистого clone прошли. Первый commit: `eee3925`.
 
 ## IN PROGRESS
-- Phase 0: проверка build/test, запуска, clean checkout и первый commit.
-  Итог проверки записывается в docs/testing.md и CHANGELOG.md.
+- **PAUSED по просьбе пользователя 2026-09-28.** Код Phase 0 проверен локально;
+  оформление milestone (tag) и GitHub-синхронизация ещё не завершены.
+  Перед продолжением читать docs/session-state.md. Не продолжать автоматически.
 
 ## NEXT
 - Phase 1 — PostgreSQL storage, nodes, REST API, readiness, logging/configuration.

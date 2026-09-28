@@ -23,7 +23,8 @@
   страницы — недоступен; после запуска и активации кнопки клавиатурой — доступен.
 - Локальный порт PostgreSQL был занят/недоступен: публикация порта удалена,
   БД доступна только внутри Compose. Остальные порты — loopback.
-- Проверка чистого Git checkout выполняется после первого commit.
+- PASS: чистый clone коммита `eee3925` в `.cache/clean-checkout`: Go test/vet/build,
+  `npm ci --offline`, все 8 frontend tests и production build. Status клона чистый.
 
 GitHub Actions ещё не запускался: remote не настроен. Race detector пока
 предусмотрен в Linux CI, но не запускался локально.
