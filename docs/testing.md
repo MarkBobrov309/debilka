@@ -26,8 +26,17 @@
 - PASS: чистый clone коммита `eee3925` в `.cache/clean-checkout`: Go test/vet/build,
   `npm ci --offline`, все 8 frontend tests и production build. Status клона чистый.
 
-GitHub Actions ещё не запускался: remote не настроен. Race detector пока
-предусмотрен в Linux CI, но не запускался локально.
+На момент первоначальных локальных проверок GitHub Actions ещё не запускался.
+Race detector предусмотрен в Linux CI, но не запускался локально.
+
+## Проверка при возобновлении 2026-09-28
+- Рабочее дерево до оформления milestone чистое; после `eee3925` менялась
+  только документация. Уже пройденные build/test повторно не запускались.
+- PASS: Controller и PostgreSQL healthy, migrate завершён с 0, web запущен.
+- PASS: API через web proxy возвращает ожидаемый v1 contract; в журнале миграций
+  единственная запись `1|foundation`.
+- Проверен diff foundation; `.env`, приватные ключи и сертификаты не отслеживаются.
+- Подготовлен milestone `v0.1.0`; GitHub-синхронизация и CI проверяются отдельно.
 
 ## Будущие уровни
 Phase 1: PostgreSQL storage и API integration. Phase 3: secure Controller ↔ Agent.

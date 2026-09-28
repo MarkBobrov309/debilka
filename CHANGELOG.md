@@ -14,5 +14,4 @@
 - Нет пользовательской аутентификации; только локальная dev-среда.
 - Build/test, Docker stack, повтор миграции и browser smoke проверены локально.
 - Чистый clone первого commit `eee3925`: Go/frontend build и tests прошли.
-- GitHub remote не настроен; push и запуск GitHub Actions пока не выполнены.
-- Работа приостановлена пользователем; release tag пока не создан.
+- Состояние GitHub-синхронизации и CI фиксируется в docs/session-state.md.

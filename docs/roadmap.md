@@ -6,11 +6,15 @@
   начальная миграция, CI, Makefile и архитектурные документы.
 - Локальные build/test, Docker smoke, повтор миграции, browser smoke и проверка
   чистого clone прошли. Первый commit: `eee3925`.
+- После возобновления подтверждены healthy Controller/PostgreSQL,
+  API через proxy и версия миграции. Подготовлен milestone `v0.1.0`.
 
 ## IN PROGRESS
-- **PAUSED по просьбе пользователя 2026-09-28.** Код Phase 0 проверен локально;
-  оформление milestone (tag) и GitHub-синхронизация ещё не завершены.
-  Перед продолжением читать docs/session-state.md. Не продолжать автоматически.
+- Phase 0: GitHub-синхронизация в `MarkBobrov309/debilka`, проверка CI
+  и финальный tag `v0.1.0`. Репозиторий предоставлен пользователем и проверен:
+  до первой отправки пустой, без веток и tags.
+- Пауза снята пользователем 2026-09-28. Phase 1 не начат; текущая задача
+  ограничена завершением Phase 0. Состояние: docs/session-state.md.
 
 ## NEXT
 - Phase 1 — PostgreSQL storage, nodes, REST API, readiness, logging/configuration.

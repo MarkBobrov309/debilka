@@ -6,6 +6,11 @@ Controller не является обязательным транзитным �
 
 ## Текущий этап: Phase 0
 
+Milestone: `v0.1.0`. Build/test, контейнерный стенд и чистый checkout проверены;
+результаты в [docs/testing.md](docs/testing.md). Репозиторий:
+[MarkBobrov309/debilka](https://github.com/MarkBobrov309/debilka).
+Состояние публикации и CI: [docs/session-state.md](docs/session-state.md).
+
 Минимальный Go Controller с `GET /api/v1/health`, React/TypeScript Dashboard
 с проверкой реального API, PostgreSQL 17, начальная SQL-миграция, Docker Compose
 и GitHub Actions. Это foundation, ещё не система удалённого доступа.
