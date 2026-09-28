@@ -14,4 +14,5 @@
 - Нет пользовательской аутентификации; только локальная dev-среда.
 - Build/test, Docker stack, повтор миграции и browser smoke проверены локально.
 - Чистый clone первого commit `eee3925`: Go/frontend build и tests прошли.
-- Состояние GitHub-синхронизации и CI фиксируется в docs/session-state.md.
+- GitHub Actions для `8c73572` прошёл: Go race tests, frontend, Docker и миграции.
+- Milestone опубликован в `MarkBobrov309/debilka`, annotated tag `v0.1.0`.

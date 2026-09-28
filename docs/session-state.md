@@ -1,8 +1,9 @@
 # Состояние проекта · 2026-09-28
 
 **Пользователь возобновил работу командой «Продолжай работу».**
-Пауза снята. Подготовлено локальное оформление Phase 0; идёт GitHub-синхронизация.
-Phase 1 не начат. Автоматическое продолжение и фоновые задачи не настроены.
+Пауза снята. **Phase 0 завершён, синхронизирован с GitHub, CI прошёл.**
+По исходному заданию после отчёта остановиться. Phase 1 не начат.
+Автоматическое продолжение и фоновые задачи не настроены.
 
 ## Запрос и границы
 Исходный полный master prompt сохранён в `docs/project-brief.md`.
@@ -24,8 +25,13 @@ OpenWrt исключён. Пользовательская/device auth отло�
   локальную ветку `master` сохраняем; переименование не требуется.
 - Коммит сохранения паузы: `9d80365` —
   `docs: preserve phase 0 verification and paused session state`.
-- После push и проверки CI создать annotated tag `v0.1.0` на финальном commit.
-  История и ветка не переписывались.
+- `origin/master` настроен, commits отправлены. Annotated tag `v0.1.0`
+  опубликован на финальном документационном commit; точный hash:
+  `git rev-list -n 1 v0.1.0`. История и ветка не переписывались.
+- GitHub CI [36462732529](https://github.com/MarkBobrov309/debilka/actions/runs/36462732529)
+  для `8c735720d9d536855133e02a2ff2e6d32ad10b6f`: SUCCESS.
+  Финальный commit меняет только документы и использует `[skip ci]`;
+  код/SQL/dependencies/workflow совпадают с проверенными.
 
 ## Реализовано
 - `cmd/controller`, `internal/config`, `internal/httpapi`: Go 1.25, stdlib,
@@ -59,10 +65,12 @@ OpenWrt исключён. Пользовательская/device auth отло�
 - Чистый локальный clone `eee3925` в `.cache/clean-checkout`: Go test/vet/build,
   npm ci --offline, frontend tests/build — PASS; status клона чистый.
 - git diff --cached --check выполнен перед первым commit; секретов в нём нет.
-- Race detector только настроен в Linux CI, локально не запускался.
+- Race detector прошёл в Linux GitHub CI; локально на Windows не запускался.
 - После возобновления подтверждены healthy Controller/PostgreSQL, migrate exit 0,
   ответ API через proxy и единственная версия миграции. Код с `eee3925` не менялся;
   повторная полная сборка не требовалась. Обновлены только статусные документы.
+- GitHub CI прошёл gofmt/vet/race/build, npm ci/tests/build, Compose validation,
+  Docker build/start, API через proxy и повторную миграцию. Подробности: docs/testing.md.
 
 ## Окружение и работающие процессы
 - Docker Desktop был запущен для тестирования и оставлен работающим.
@@ -84,14 +92,12 @@ OpenWrt исключён. Пользовательская/device auth отло�
 - PowerShell: использовать npm.cmd при ограничении запуска npm.ps1.
 
 ## Оставшиеся шаги
-1. Прочитать AGENTS, этот файл, roadmap; проверить git status/log и состояние Compose.
-2. Настроить предоставленный remote, отправить `master`, проверить CI;
-   после фиксации результатов создать и отправить tag `v0.1.0`.
-   Не делать force push.
-3. Проверить GitHub Actions после push, если доступен инструмент для чтения статуса.
-   Не утверждать, что CI прошёл, без результата. Обновить документы о синхронизации.
-4. Только по отдельному запросу Phase 1: выбор migration runner с checksum,
+У Phase 0 незавершённых шагов нет. Для дальнейшей работы:
+1. По новому запросу прочитать AGENTS, этот файл, roadmap;
+   проверить git status/log и состояние Compose.
+2. Следующий рекомендуемый срез Phase 1: выбор migration runner с checksum,
    PostgreSQL storage, Node model/create/list REST API, readiness и integration tests.
+   Не начинать автоматически после завершения Phase 0.
 
 ## История паузы
 Пользователь остановил работу после первого commit и чистого clone. Полное задание,

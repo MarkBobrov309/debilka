@@ -10,6 +10,8 @@ Milestone: `v0.1.0`. Build/test, контейнерный стенд и чист
 результаты в [docs/testing.md](docs/testing.md). Репозиторий:
 [MarkBobrov309/debilka](https://github.com/MarkBobrov309/debilka).
 Состояние публикации и CI: [docs/session-state.md](docs/session-state.md).
+Проверка Phase 0 в [GitHub Actions](https://github.com/MarkBobrov309/debilka/actions/runs/36462732529)
+завершилась успешно, включая Go race detector и Docker smoke.
 
 Минимальный Go Controller с `GET /api/v1/health`, React/TypeScript Dashboard
 с проверкой реального API, PostgreSQL 17, начальная SQL-миграция, Docker Compose

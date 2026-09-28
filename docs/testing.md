@@ -36,7 +36,18 @@ Race detector предусмотрен в Linux CI, но не запускалс
 - PASS: API через web proxy возвращает ожидаемый v1 contract; в журнале миграций
   единственная запись `1|foundation`.
 - Проверен diff foundation; `.env`, приватные ключи и сертификаты не отслеживаются.
-- Подготовлен milestone `v0.1.0`; GitHub-синхронизация и CI проверяются отдельно.
+- GitHub-синхронизация и CI завершены; milestone `v0.1.0`.
+
+## GitHub Actions · 2026-09-28
+- [Run 36462732529](https://github.com/MarkBobrov309/debilka/actions/runs/36462732529),
+  commit `8c735720d9d536855133e02a2ff2e6d32ad10b6f`: **SUCCESS**.
+- PASS: gofmt, go vet, `go test -race ./...`, Go build.
+- PASS: npm ci, frontend tests, TypeScript/Vite build.
+- PASS: Compose validation, Docker build/start, API через web proxy,
+  повторная миграция и проверка единственной версии.
+- Финальный commit milestone меняет только документацию; код, dependencies,
+  SQL, Docker и workflow совпадают с проверенным commit. Повтор CI для записи
+  результатов пропущен через `[skip ci]`; это не дополнительный выполненный run.
 
 ## Будущие уровни
 Phase 1: PostgreSQL storage и API integration. Phase 3: secure Controller ↔ Agent.

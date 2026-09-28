@@ -8,13 +8,13 @@
   чистого clone прошли. Первый commit: `eee3925`.
 - После возобновления подтверждены healthy Controller/PostgreSQL,
   API через proxy и версия миграции. Подготовлен milestone `v0.1.0`.
+- **Phase 0 завершён:** commits и annotated tag `v0.1.0` отправлены в
+  `MarkBobrov309/debilka`; [CI для 8c73572](https://github.com/MarkBobrov309/debilka/actions/runs/36462732529)
+  прошёл все проверки. Финальный commit добавляет только запись о результатах.
 
 ## IN PROGRESS
-- Phase 0: GitHub-синхронизация в `MarkBobrov309/debilka`, проверка CI
-  и финальный tag `v0.1.0`. Репозиторий предоставлен пользователем и проверен:
-  до первой отправки пустой, без веток и tags.
-- Пауза снята пользователем 2026-09-28. Phase 1 не начат; текущая задача
-  ограничена завершением Phase 0. Состояние: docs/session-state.md.
+- Активных задач нет. Phase 1 не начат: по исходному заданию после Phase 0
+  работа останавливается с отчётом. Состояние: docs/session-state.md.
 
 ## NEXT
 - Phase 1 — PostgreSQL storage, nodes, REST API, readiness, logging/configuration.
