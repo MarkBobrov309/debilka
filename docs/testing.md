@@ -1,0 +1,35 @@
+# Тестирование
+
+## Автоматические проверки
+- `go test ./...`: валидация адреса, default loopback, HTTP contract,
+  неизвестные endpoints и недопустимые методы.
+- `go vet ./...`, `go build ./...`: Go static checks и сборка.
+- `npm --prefix web test`: health contract, сбои HTTP/network/JSON,
+  несовместимая версия и начальное состояние Dashboard.
+- `npm --prefix web run build`: TypeScript strict check и production bundle.
+- CI дополнительно выполняет `go test -race ./...` на Linux.
+- Compose CI: build, запуск PostgreSQL, повтор миграции, проверка единственной
+  версии и API через web proxy. UI browser E2E добавляются вместе с node management.
+
+## Локальная проверка 2026-09-28
+- Windows: Go 1.25.5, Node.js 24.15.0, npm 11.12.1.
+- PASS: Go unit tests, vet и build. Config/httpapi packages: 100% statement
+  coverage; cmd/main проверен запуском контейнера и корректным SIGTERM (exit 0).
+- PASS: frontend 8 tests, strict typecheck и production build.
+- PASS: Docker build обоих образов; PostgreSQL/Controller healthy; migrate exit 0.
+- PASS: повтор миграции оставляет одну запись `1|foundation`.
+- PASS: API через web proxy возвращает ожидаемый v1 contract.
+- PASS: браузер показывает доступный Controller; после остановки и перезагрузки
+  страницы — недоступен; после запуска и активации кнопки клавиатурой — доступен.
+- Локальный порт PostgreSQL был занят/недоступен: публикация порта удалена,
+  БД доступна только внутри Compose. Остальные порты — loopback.
+- Проверка чистого Git checkout выполняется после первого commit.
+
+GitHub Actions ещё не запускался: remote не настроен. Race detector пока
+предусмотрен в Linux CI, но не запускался локально.
+
+## Будущие уровни
+Phase 1: PostgreSQL storage и API integration. Phase 3: secure Controller ↔ Agent.
+Следующие фазы: renderer/validation, state machines, rollback, provider integration,
+single-hop и multi-hop. Health/failover проверяются сериями ошибок и успешных
+измерений с hysteresis; одна удачная проверка не доказывает устойчивость.

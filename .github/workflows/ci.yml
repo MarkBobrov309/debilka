@@ -1,0 +1,45 @@
+name: CI
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: test -z "$(gofmt -l cmd internal)"
+      - run: go vet ./...
+      - run: go test -race ./...
+      - run: go build ./...
+      - run: npm --prefix web ci
+      - run: npm --prefix web test
+      - run: npm --prefix web run build
+      - name: Create ephemeral database password
+        run: echo "POSTGRES_PASSWORD=$(openssl rand -hex 24)" >> "$GITHUB_ENV"
+      - run: docker compose config --quiet
+      - run: docker compose up --build -d
+      - name: Verify API through Dashboard proxy
+        run: |
+          curl --fail --retry 20 --retry-connrefused --retry-delay 2 http://127.0.0.1:5173/api/v1/health | jq -e '.status == "ok" and .service == "controller" and .api_version == "v1"'
+          curl --fail http://127.0.0.1:5173/ | grep -q 'id="root"'
+      - name: Verify repeatable baseline migration
+        run: |
+          docker compose run --rm migrate
+          test "$(docker compose exec -T postgres psql -U orchestrator -d orchestrator -Atc 'SELECT count(*) FROM orchestrator.schema_migrations WHERE version = 1')" = '1'
+      - name: Diagnostics
+        if: failure()
+        run: docker compose logs --no-color
+      - name: Stop containers
+        if: always()
+        run: docker compose down
